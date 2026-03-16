@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// DEMO — Como usar @sesp-org/ng-spring-auth
+// DEMO — Como usar @auth/ng-spring-auth
 // ═══════════════════════════════════════════════════════════════════════════════
 
 // ─── 1. STANDALONE APP (Angular 17+) ─────────────────────────────────────────
@@ -14,7 +14,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
   provideSpringAuth,
   authInterceptor,
-} from '@sesp-org/ng-spring-auth';
+} from '@auth/ng-spring-auth';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -46,7 +46,7 @@ export const appConfig: ApplicationConfig = {
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { SpringAuthModule } from '@sesp-org/ng-spring-auth';
+import { SpringAuthModule } from '@auth/ng-spring-auth';
 
 @NgModule({
   imports: [
@@ -66,7 +66,7 @@ import {
   roleGuard,
   guestGuard,
   canMatchAuthGuard,
-} from '@sesp-org/ng-spring-auth';
+} from '@auth/ng-spring-auth';
 
 const routes = [
   // Public routes
@@ -96,7 +96,7 @@ const routes = [
 
 // login-page.component.ts
 import { Component } from '@angular/core';
-import { LoginComponent } from '@sesp-org/ng-spring-auth';
+import { LoginComponent } from '@auth/ng-spring-auth';
 
 @Component({
   standalone: true,
@@ -122,7 +122,7 @@ export class LoginPageComponent {
 // ─── 5. USING AuthService DIRECTLY ───────────────────────────────────────────
 
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@sesp-org/ng-spring-auth';
+import { AuthService } from '@auth/ng-spring-auth';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
