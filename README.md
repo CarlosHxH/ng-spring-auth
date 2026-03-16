@@ -1,4 +1,4 @@
-# @minha-org/ng-spring-auth
+# @auth/ng-spring-auth
 
 Biblioteca Angular completa para autenticação com Spring Boot usando JWT.
 
