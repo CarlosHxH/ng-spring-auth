@@ -28,7 +28,7 @@ npm install @auth/ng-spring-auth
 
 ## ⚡ Início Rápido
 
-### Standalone App (Angular 15+)
+### Standalone App (Angular 16+)
 
 ```typescript
 // app.config.ts
@@ -84,6 +84,9 @@ const routes: Routes = [
 ];
 ```
 
+- **authGuard:** redireciona para `/login` com `returnUrl` em query params quando o usuário não está autenticado.
+- **roleGuard:** exige que o usuário tenha **todos** os roles indicados em `data.roles` (AND). Use junto de `authGuard` para rotas que exigem login e papel específico.
+
 ---
 
 ## 🖼️ Componentes Prontos
@@ -111,7 +114,7 @@ const routes: Routes = [
 | Input | Tipo | Padrão | Descrição |
 |---|---|---|---|
 | `title` | string | `'Bem-vindo de volta'` | Título do card |
-| `subtitle` | string | `'Entre com suas credenciais...'` | Subtítulo |
+| `subtitle` | string | `'Entre com suas credenciais para continuar'` | Subtítulo |
 | `redirectAfterLogin` | string \| null | `null` | Rota após login |
 | `showRegisterLink` | boolean | `true` | Exibir link de cadastro |
 | `registerPath` | string | `'/register'` | Rota do cadastro |
@@ -123,6 +126,25 @@ const routes: Routes = [
 | `loginSuccess` | `EventEmitter<AuthResponse>` | Login bem-sucedido |
 | `loginError` | `EventEmitter<unknown>` | Erro no login |
 | `registerClick` | `EventEmitter<void>` | Clique em "criar conta" |
+
+### Inputs do `<spring-register>`
+
+| Input | Tipo | Padrão | Descrição |
+|---|---|---|---|
+| `title` | string | `'Criar conta'` | Título do card |
+| `subtitle` | string | `'Preencha os dados para se cadastrar'` | Subtítulo |
+| `showName` | boolean | `true` | Exibir campos nome e sobrenome |
+| `showLoginLink` | boolean | `true` | Exibir link para login |
+| `loginPath` | string | `'/login'` | Rota do login |
+| `redirectAfterRegister` | string \| null | `null` | Rota após cadastro |
+
+### Outputs do `<spring-register>`
+
+| Output | Tipo | Descrição |
+|---|---|---|
+| `registerSuccess` | `EventEmitter<unknown>` | Cadastro bem-sucedido |
+| `registerError` | `EventEmitter<unknown>` | Erro no cadastro |
+| `loginClick` | `EventEmitter<void>` | Clique em "Entrar" |
 
 ---
 
@@ -152,6 +174,7 @@ auth.isAuthenticated()                     // boolean (síncrono)
 auth.hasRole('ADMIN')                      // boolean
 auth.hasAnyRole('ADMIN', 'MANAGER')        // boolean
 auth.getAccessToken()                      // string | null
+auth.getRefreshToken()                     // string | null
 auth.decodeToken(token)                    // TokenPayload | null
 auth.isTokenExpired(token)                 // boolean
 ```
@@ -237,4 +260,4 @@ src/
 
 ## 📜 Licença
 
-MIT
+MIT — veja [LICENSE](LICENSE.md).
