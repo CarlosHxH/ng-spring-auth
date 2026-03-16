@@ -1,5 +1,5 @@
 {
-  "name": "@auth/ng-spring-auth",
+  "name": "ng-spring-auth",
   "version": "1.0.0",
   "description": "Angular library for authentication with Spring Boot (JWT, refresh tokens, guards, interceptors, components)",
   "keywords": ["angular", "spring-boot", "authentication", "jwt", "library"],

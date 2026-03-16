@@ -1,4 +1,4 @@
-# @auth/ng-spring-auth
+# ng-spring-auth
 
 Biblioteca Angular completa para autenticação com Spring Boot usando JWT.
 
@@ -21,7 +21,7 @@ Biblioteca Angular completa para autenticação com Spring Boot usando JWT.
 ## 📦 Instalação
 
 ```bash
-npm install @auth/ng-spring-auth
+npm install ng-spring-auth
 ```
 
 ---
@@ -33,7 +33,7 @@ npm install @auth/ng-spring-auth
 ```typescript
 // app.config.ts
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { provideSpringAuth, authInterceptor } from '@auth/ng-spring-auth';
+import { provideSpringAuth, authInterceptor } from 'ng-spring-auth';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -50,7 +50,7 @@ export const appConfig: ApplicationConfig = {
 
 ```typescript
 // app.module.ts
-import { SpringAuthModule } from '@auth/ng-spring-auth';
+import { SpringAuthModule } from 'ng-spring-auth';
 
 @NgModule({
   imports: [
@@ -65,7 +65,7 @@ export class AppModule {}
 ## 🛣️ Protegendo Rotas
 
 ```typescript
-import { authGuard, roleGuard, guestGuard, canMatchAuthGuard } from '@auth/ng-spring-auth';
+import { authGuard, roleGuard, guestGuard, canMatchAuthGuard } from 'ng-spring-auth';
 
 const routes: Routes = [
   { path: 'login',    canActivate: [guestGuard],  component: LoginPageComponent },
@@ -151,7 +151,7 @@ const routes: Routes = [
 ## 🔧 AuthService API
 
 ```typescript
-import { AuthService } from '@auth/ng-spring-auth';
+import { AuthService } from 'ng-spring-auth';
 
 constructor(private auth: AuthService) {}
 
