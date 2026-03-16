@@ -1,0 +1,24 @@
+{
+  "name": "@auth/ng-spring-auth",
+  "version": "1.0.0",
+  "description": "Angular library for authentication with Spring Boot (JWT, refresh tokens, guards, interceptors, components)",
+  "keywords": ["angular", "spring-boot", "authentication", "jwt", "library"],
+  "peerDependencies": {
+    "@angular/common": ">=16.0.0",
+    "@angular/core": ">=16.0.0",
+    "@angular/forms": ">=16.0.0",
+    "@angular/router": ">=16.0.0",
+    "rxjs": ">=7.0.0"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./src/public-api.ts",
+      "default": "./src/public-api.ts"
+    }
+  },
+  "scripts": {
+    "build": "ng-packagr -p ng-package.json"
+  },
+  "license": "MIT"
+}
