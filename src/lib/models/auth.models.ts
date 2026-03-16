@@ -69,26 +69,6 @@ export interface SpringAuthConfig {
   loginSuccessRedirect?: string;
 }
 
-/** Resolved config with all optional fields filled (used internally) */
-export interface ResolvedSpringAuthConfig {
-  apiUrl: string;
-  endpoints: {
-    login: string;
-    register: string;
-    refresh: string;
-    logout: string;
-    me: string;
-  };
-  storageKeys: {
-    accessToken: string;
-    refreshToken: string;
-    user: string;
-  };
-  autoRefresh: boolean;
-  logoutRedirect: string;
-  loginSuccessRedirect: string;
-}
-
 // ─── Internal Auth State ──────────────────────────────────────────────────────
 
 export interface AuthState {

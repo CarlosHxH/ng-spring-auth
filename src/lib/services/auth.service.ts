@@ -18,7 +18,6 @@ import {
 
 import {
   SpringAuthConfig,
-  ResolvedSpringAuthConfig,
   LoginRequest,
   RegisterRequest,
   AuthResponse,
@@ -51,7 +50,7 @@ const DEFAULT_CONFIG: Required<SpringAuthConfig> = {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly cfg: ResolvedSpringAuthConfig;
+  private readonly cfg: Required<SpringAuthConfig>;
 
   private readonly _state$ = new BehaviorSubject<AuthState>({
     isAuthenticated: false,
@@ -360,26 +359,15 @@ export class AuthService {
 
   private _mergeConfig(
     user: SpringAuthConfig | null
-  ): ResolvedSpringAuthConfig {
-    if (!user) return DEFAULT_CONFIG as ResolvedSpringAuthConfig;
-
-    const defaultKeys = DEFAULT_CONFIG.storageKeys;
-    const userKeys = user.storageKeys ?? {};
-    const defaultEndpoints = DEFAULT_CONFIG.endpoints;
+  ): Required<SpringAuthConfig> {
+    if (!user) return DEFAULT_CONFIG;
 
     return {
       apiUrl: user.apiUrl ?? DEFAULT_CONFIG.apiUrl,
-      endpoints: {
-        login: user.endpoints?.login ?? defaultEndpoints.login ?? '/auth/login',
-        register: user.endpoints?.register ?? defaultEndpoints.register ?? '/auth/register',
-        refresh: user.endpoints?.refresh ?? defaultEndpoints.refresh ?? '/auth/refresh',
-        logout: user.endpoints?.logout ?? defaultEndpoints.logout ?? '/auth/logout',
-        me: user.endpoints?.me ?? defaultEndpoints.me ?? '/auth/me',
-      },
+      endpoints: { ...DEFAULT_CONFIG.endpoints, ...(user.endpoints ?? {}) },
       storageKeys: {
-        accessToken: userKeys.accessToken ?? defaultKeys.accessToken ?? 'access_token',
-        refreshToken: userKeys.refreshToken ?? defaultKeys.refreshToken ?? 'refresh_token',
-        user: userKeys.user ?? defaultKeys.user ?? 'auth_user',
+        ...DEFAULT_CONFIG.storageKeys,
+        ...(user.storageKeys ?? {}),
       },
       autoRefresh: user.autoRefresh ?? DEFAULT_CONFIG.autoRefresh,
       logoutRedirect: user.logoutRedirect ?? DEFAULT_CONFIG.logoutRedirect,
